@@ -1,10 +1,465 @@
-<html>
-<head>
-  <title>My Portfolio</title>
-</head>
-<body>
-  <!-- Hero section with intro -->
-  <!-- Featured projects -->
-  <!-- Contact section -->
-</body>
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>FinEdge | 핀테크 포트폴리오</title>
+		<meta
+			name="description"
+			content="금융 데이터, 결제 인프라, 리스크 분석 역량을 담은 핀테크 포트폴리오"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;600;700&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			:root {
+				--bg: #0a0f1e;
+				--surface: #121a2f;
+				--surface-2: #0f172a;
+				--primary: #4f8cff;
+				--primary-soft: rgba(79, 140, 255, 0.15);
+				--accent: #2bd4a4;
+				--text: #f5f7ff;
+				--muted: #9aa4bf;
+				--border: rgba(255, 255, 255, 0.08);
+				--glow: 0 0 40px rgba(79, 140, 255, 0.35);
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Inter", "Noto Sans KR", system-ui, sans-serif;
+				background: radial-gradient(circle at top, #1a2140 0%, #0a0f1e 50%);
+				color: var(--text);
+				min-height: 100vh;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+
+			.container {
+				width: min(1200px, 92vw);
+				margin: 0 auto;
+			}
+
+			header {
+				position: sticky;
+				top: 0;
+				z-index: 20;
+				background: rgba(10, 15, 30, 0.9);
+				border-bottom: 1px solid var(--border);
+				backdrop-filter: blur(12px);
+			}
+
+			.nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 18px 0;
+			}
+
+			.logo {
+				font-weight: 700;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+			}
+
+			.nav-links {
+				display: flex;
+				gap: 22px;
+				font-size: 0.95rem;
+				color: var(--muted);
+			}
+
+			.nav-links a:hover {
+				color: var(--text);
+			}
+
+			.hero {
+				padding: 80px 0 60px;
+				display: grid;
+				gap: 40px;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				align-items: center;
+			}
+
+			.hero h1 {
+				font-size: clamp(2.6rem, 4vw, 4rem);
+				line-height: 1.1;
+			}
+
+			.hero p {
+				margin: 18px 0 28px;
+				color: var(--muted);
+				font-size: 1.05rem;
+			}
+
+			.cta {
+				display: inline-flex;
+				gap: 12px;
+				align-items: center;
+				background: var(--primary);
+				color: #fff;
+				padding: 14px 26px;
+				border-radius: 999px;
+				font-weight: 600;
+				box-shadow: var(--glow);
+			}
+
+			.hero-card {
+				background: linear-gradient(135deg, rgba(79, 140, 255, 0.16), rgba(43, 212, 164, 0.05));
+				border: 1px solid var(--border);
+				border-radius: 24px;
+				padding: 26px;
+				display: grid;
+				gap: 16px;
+			}
+
+			.hero-card h3 {
+				font-size: 1.1rem;
+			}
+
+			.hero-card ul {
+				list-style: none;
+				display: grid;
+				gap: 10px;
+				color: var(--muted);
+			}
+
+			section {
+				padding: 50px 0;
+			}
+
+			.section-title {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				margin-bottom: 22px;
+			}
+
+			.section-title h2 {
+				font-size: 1.8rem;
+			}
+
+			.tag {
+				font-size: 0.85rem;
+				color: var(--primary);
+				background: var(--primary-soft);
+				padding: 6px 12px;
+				border-radius: 999px;
+			}
+
+			.grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 18px;
+			}
+
+			.card {
+				background: var(--surface);
+				border-radius: 18px;
+				border: 1px solid var(--border);
+				padding: 20px;
+				display: grid;
+				gap: 14px;
+				min-height: 220px;
+				transition: transform 0.2s ease, border 0.2s ease;
+			}
+
+			.card:hover {
+				transform: translateY(-6px);
+				border-color: rgba(79, 140, 255, 0.5);
+			}
+
+			.badge {
+				font-size: 0.75rem;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: var(--muted);
+			}
+
+			.meta {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 10px;
+				color: var(--muted);
+				font-size: 0.85rem;
+			}
+
+			.pill {
+				border: 1px solid var(--border);
+				padding: 6px 10px;
+				border-radius: 999px;
+			}
+
+			.list {
+				display: grid;
+				gap: 16px;
+			}
+
+			.list-item {
+				background: var(--surface-2);
+				border-radius: 16px;
+				border: 1px solid var(--border);
+				padding: 18px 20px;
+				display: grid;
+				gap: 8px;
+			}
+
+			.list-item span {
+				color: var(--muted);
+				font-size: 0.95rem;
+			}
+
+			.metrics {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+				gap: 14px;
+			}
+
+			.metric {
+				background: rgba(79, 140, 255, 0.1);
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				padding: 16px;
+				display: grid;
+				gap: 4px;
+			}
+
+			.metric strong {
+				font-size: 1.4rem;
+			}
+
+			.contact {
+				display: grid;
+				gap: 16px;
+			}
+
+			.contact input,
+			.contact textarea {
+				width: 100%;
+				padding: 12px 14px;
+				border-radius: 12px;
+				border: 1px solid var(--border);
+				background: #0b1224;
+				color: var(--text);
+			}
+
+			.contact button {
+				width: fit-content;
+				padding: 12px 18px;
+				border-radius: 999px;
+				border: none;
+				background: var(--accent);
+				color: #03241b;
+				font-weight: 700;
+				cursor: pointer;
+			}
+
+			footer {
+				border-top: 1px solid var(--border);
+				padding: 30px 0 40px;
+				color: var(--muted);
+				font-size: 0.85rem;
+			}
+
+			@media (max-width: 720px) {
+				.nav {
+					flex-direction: column;
+					gap: 16px;
+				}
+
+				.nav-links {
+					flex-wrap: wrap;
+					justify-content: center;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container nav">
+				<div class="logo">FinEdge</div>
+				<nav class="nav-links">
+					<a href="#projects">프로젝트</a>
+					<a href="#capabilities">역량</a>
+					<a href="#insights">인사이트</a>
+					<a href="#contact">문의</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="container">
+			<section class="hero">
+				<div>
+					<p class="tag">Fintech Portfolio 2026</p>
+					<h1>데이터로 신뢰를 설계하는 핀테크 포트폴리오</h1>
+					<p>
+						결제, 신용평가, 리스크 관리 영역에서 축적한 실전 프로젝트와 시스템 설계 경험을
+						한눈에 확인하세요.
+					</p>
+					<a class="cta" href="#projects">포트폴리오 보기 →</a>
+				</div>
+				<div class="hero-card">
+					<h3>핵심 스택</h3>
+					<ul>
+						<li>💳 Payments: 카드/계좌/간편결제 라우팅</li>
+						<li>📈 Risk: 이상 거래 탐지, 한도 관리</li>
+						<li>🔐 Compliance: KYC/AML 자동화</li>
+					</ul>
+					<div class="metrics">
+						<div class="metric">
+							<strong>3.2M+</strong>
+							<span>월간 거래 처리</span>
+						</div>
+						<div class="metric">
+							<strong>0.12%</strong>
+							<span>이상 거래율</span>
+						</div>
+						<div class="metric">
+							<strong>98.4%</strong>
+							<span>자동화 승인</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="projects">
+				<div class="section-title">
+					<h2>대표 프로젝트</h2>
+					<span class="tag">Featured</span>
+				</div>
+				<div class="grid">
+					<article class="card">
+						<span class="badge">Payment Gateway</span>
+						<h3>다중 결제 라우팅 플랫폼</h3>
+						<p>
+							국가별 결제 성공률을 최적화하는 라우팅 엔진 구축. 실시간 장애 감지와
+							자동 전환으로 승인율을 개선했습니다.
+						</p>
+						<div class="meta">
+							<span class="pill">승인율 +6.4%</span>
+							<span class="pill">응답 240ms</span>
+						</div>
+					</article>
+					<article class="card">
+						<span class="badge">Risk Analytics</span>
+						<h3>실시간 이상 거래 탐지</h3>
+						<p>
+							거래 패턴 기반 모델과 룰 엔진을 통합해 위험도를 스코어링. 경보 정확도를
+							높이고 운영 비용을 줄였습니다.
+						</p>
+						<div class="meta">
+							<span class="pill">탐지 정밀도 91%</span>
+							<span class="pill">운영 35% 절감</span>
+						</div>
+					</article>
+					<article class="card">
+						<span class="badge">Lending</span>
+						<h3>대안 신용평가 스코어</h3>
+						<p>
+							비금융 데이터와 거래 이력을 결합해 대출 심사 자동화를 구현. 신규 고객
+							승인률을 높였습니다.
+						</p>
+						<div class="meta">
+							<span class="pill">승인율 +12%</span>
+							<span class="pill">부실율 -9%</span>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<section id="capabilities">
+				<div class="section-title">
+					<h2>핵심 역량</h2>
+					<span class="tag">Capabilities</span>
+				</div>
+				<div class="grid">
+					<div class="card">
+						<h3>데이터 파이프라인</h3>
+						<p>실시간 ETL, 이벤트 스트리밍, 데이터 품질 관리 체계를 구축합니다.</p>
+						<div class="meta">
+							<span class="pill">Kafka</span>
+							<span class="pill">dbt</span>
+							<span class="pill">BigQuery</span>
+						</div>
+					</div>
+					<div class="card">
+						<h3>규제 대응 설계</h3>
+						<p>전자금융감독규정, AML 요건을 충족하는 감사 추적 및 리포트를 제공합니다.</p>
+						<div class="meta">
+							<span class="pill">KYC/AML</span>
+							<span class="pill">Audit Trail</span>
+						</div>
+					</div>
+					<div class="card">
+						<h3>보안 아키텍처</h3>
+						<p>토큰화, 암호화 키 관리, 권한 분리를 통한 보안 설계를 수행합니다.</p>
+						<div class="meta">
+							<span class="pill">Tokenization</span>
+							<span class="pill">HSM</span>
+						</div>
+					</div>
+					<div class="card">
+						<h3>성장 분석</h3>
+						<p>지표 기반 성장 실험과 코호트 분석으로 제품 확장을 지원합니다.</p>
+						<div class="meta">
+							<span class="pill">LTV</span>
+							<span class="pill">Cohort</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="insights">
+				<div class="section-title">
+					<h2>인사이트 & 리서치</h2>
+					<span class="tag">Insights</span>
+				</div>
+				<div class="list">
+					<div class="list-item">
+						<h3>실시간 리스크 스코어링 설계 가이드</h3>
+						<span>거래 이벤트를 기준으로 모델 업데이트 주기를 재설계한 사례 공유.</span>
+					</div>
+					<div class="list-item">
+						<h3>국내외 결제 승인율 최적화 전략</h3>
+						<span>라우팅 로직 개선과 실패 원인 분석을 통한 승인율 개선 노하우.</span>
+					</div>
+					<div class="list-item">
+						<h3>규제 샌드박스 대응 체크리스트</h3>
+						<span>신규 서비스 런칭 시 필요한 법규 및 보고 프로세스 요약.</span>
+					</div>
+				</div>
+			</section>
+
+			<section id="contact">
+				<div class="section-title">
+					<h2>프로젝트 문의</h2>
+					<span class="tag">Contact</span>
+				</div>
+				<div class="card contact">
+					<p>협업 제안, 컨설팅, 기술 파트너십 문의를 기다립니다.</p>
+					<input type="text" placeholder="이름" />
+					<input type="email" placeholder="이메일" />
+					<textarea rows="4" placeholder="문의 내용을 입력하세요"></textarea>
+					<button type="button">문의 보내기</button>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<div class="container">
+				<p>© 2026 FinEdge. 금융 혁신을 위한 데이터 기반 제품 설계.</p>
+			</div>
+		</footer>
+	</body>
 </html>
